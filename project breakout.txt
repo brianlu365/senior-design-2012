@@ -11,4 +11,7 @@ Phase 1:
 	- flow diagram (overall view of how this thing going to work)
 	- distribute work
 	- make a schedule
+
+phase 2:
+
 		
