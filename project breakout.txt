@@ -1,0 +1,14 @@
+Interact with Kinect
+
+project deadline: 
+
+
+Phase 1:
+	- find hardware and software we need
+		~ xbox kinect - ok
+		~ opencv
+		~ openkinect - ok
+	- flow diagram (overall view of how this thing going to work)
+	- distribute work
+	- make a schedule
+		
