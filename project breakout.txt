@@ -1,6 +1,6 @@
 Interact with Kinect
 
-project deadline: 
+project deadline: Dec 8
 
 
 Phase 1:
