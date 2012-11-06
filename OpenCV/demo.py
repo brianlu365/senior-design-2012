@@ -19,7 +19,7 @@ cap = cv2.VideoCapture(0)
 
 while True:
   ret,im = cap.read()
-  blue = cv2.GaussianBlur(im,(0,0),5)
+  blur = cv2.GaussianBlur(im,(0,0),5)
   cv2.imshow('video test',blur)
   key = cv2.waitKey(10)
   if key == 27:

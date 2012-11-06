@@ -1,0 +1,9 @@
+Abstract:
+
+The idea of this project is to remotely control a robot to follow a path drew by user's hand movement. We got the idea from playing a popular real time strategy game called starcraft. Where the player commands combat units from a top down view to move around the map and fight units of other player. We want to create a system that simulate that idea in the real world.
+
+In this project the player will be able to see a video stream from a camera shooting down from the top of the robot on a TV. We are using Kinect sensor from the xbox360 gaming console to track player's hand movement in front of a display to create a path for the robot to follow. 
+
+Image processing is heavily involved in this project. The camera on top of the robot will need to be able to recognize the robot and its position. As the robot moves around, the camera should keep track of the robot¡¯s movement.
+We think this project has wide range of practical applications. For example, with this technology, a soldier can just use their hands to control remote vehicles during combat, instead of having to carry an extra remote controller or a computer. Moreover the top down view enables to soldier to control the units in a more intuitive way. 
+
