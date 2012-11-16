@@ -1,0 +1,5 @@
+Open the project in Visual C#
+Project -> Add reference
+
+go to the Browse tab
+and add C:/Program Files/Microsoft SDKs/Kinect/v1.6/Assemblies/Microsoft.Kinect.dll

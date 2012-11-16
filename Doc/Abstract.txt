@@ -4,6 +4,7 @@ The idea of this project is to remotely control a robot to follow a path drew by
 
 In this project the player will be able to see a video stream from a camera shooting down from the top of the robot on a TV. We are using Kinect sensor from the xbox360 gaming console to track player's hand movement in front of a display to create a path for the robot to follow. 
 
-Image processing is heavily involved in this project. The camera on top of the robot will need to be able to recognize the robot and its position. As the robot moves around, the camera should keep track of the robot¡¯s movement.
-We think this project has wide range of practical applications. For example, with this technology, a soldier can just use their hands to control remote vehicles during combat, instead of having to carry an extra remote controller or a computer. Moreover the top down view enables to soldier to control the units in a more intuitive way. 
+Image processing is heavily involved in this project. The camera on top of the robot is used to recognize the robot and its position. The positional data will then processed by the computer to guide the robot.
+
+We think this project has wide range of practical applications. For example, with this technology, a soldier can just use their hands to control unmanned vehicles during combat. Moreover the top down view enables to soldier to control units in a more intuitive way. 
 

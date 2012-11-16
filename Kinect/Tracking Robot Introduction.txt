@@ -1,0 +1,5 @@
+Draw Lines with hand movement.
+Lines can not exceed a length of 200.
+Whenever a line exceed a length of 200, current line will be discarded and a new line will be construted.
+Lines are implemented by linked list, in which each node stores a point along the line.
+The distance between each node is strictly 1.
