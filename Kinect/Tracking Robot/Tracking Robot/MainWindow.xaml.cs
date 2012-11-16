@@ -6,7 +6,7 @@ namespace Microsoft.Kinect.TrackingRobot
     using System.Windows;
     using System.Windows.Media;
     using Microsoft.Kinect;
-
+    using System.Diagnostics;
 
   
     public partial class MainWindow : Window
@@ -197,12 +197,12 @@ namespace Microsoft.Kinect.TrackingRobot
                 // if the distance between current point and last point exceeds 1, add a new node
                 Point currentPoint = SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position);
                 double distance = Math.Sqrt(Math.Pow(currentPoint.X - handPath.tailPoint().X, 2) + Math.Pow(currentPoint.Y - handPath.tailPoint().Y, 2));
-                if (distance >= 1.0)
+                if (distance >= handPath.distance)
                 {
                     handPath.addNode(currentPoint);
                 }
             }
-            if (handPath.length > 200)
+            if (handPath.length > 100)
             {
                 handPath.deleteAll();
             }
@@ -219,10 +219,14 @@ namespace Microsoft.Kinect.TrackingRobot
                 }
             }
         }
+        //draw current hand position
         private void drawCurrentHandPosition(DrawingContext drawingContext, Skeleton skel)
         {
             Point currentPoint = SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position);
             drawingContext.DrawEllipse(inferredJointBrush, inferredBonePen, currentPoint, 10, 10);
+            Debug.Print("currentPoint = (%d , %d)\n", currentPoint.X, currentPoint.Y);
+            String text = "(" + currentPoint.X + " , " + currentPoint.Y+ ")";
+            textBox1.Text = text;
         }
     }
     //hard coded linked list
@@ -232,15 +236,19 @@ namespace Microsoft.Kinect.TrackingRobot
         public Node()
         {
             next = null;
+            turnAngle = new Angle();
         }
         public Node(Point p)
         {
             myPoint.X = p.X;
             myPoint.Y = p.Y;
             next = null;
+            turnAngle = new Angle();
         }
+
         public Point myPoint;
         public Node next;
+        public Angle turnAngle;
     }
     public class LinkedList
     {
@@ -249,12 +257,14 @@ namespace Microsoft.Kinect.TrackingRobot
             head = null;
             tail = null;
             length = 0;
+            distance = 10.0;
         }
         public LinkedList(Point point)
         {
             head = new Node(point);
             tail = head;
             length = 1;
+            distance = 10.0;
 
         }
         public void addNode(Point point)
@@ -267,12 +277,14 @@ namespace Microsoft.Kinect.TrackingRobot
             }
             else if (head.next == null)
             {
+                head.turnAngle.angle = calculateAngle(head.myPoint, point);
                 head.next = new Node(point);
                 tail = head.next;
                 length += 1;
             }
             else
             {
+                tail.turnAngle.angle = calculateAngle(tail.myPoint, point);
                 tail.next = new Node(point);
                 tail = tail.next;
                 length += 1;
@@ -285,6 +297,36 @@ namespace Microsoft.Kinect.TrackingRobot
             GC.Collect();
             length = 0;
         }
+        //calculate the angle based on two points : the angle is defined in Cartesian Coordinates
+        public double calculateAngle(Point n1, Point n2)
+        {
+            double angle = 0;
+            //region I
+            if (n2.X > n1.X && n2.Y < n1.Y)
+            {
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y)/distance)) * 180 / Math.PI;
+            }
+            //region II
+            else if (n2.X < n1.X && n2.Y < n1.Y)
+            {
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle += 90;
+            }
+            //region III
+            else if (n2.X < n1.X && n2.Y > n1.Y)
+            {
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle += 180;
+            }
+            //region IV
+            else if (n2.X > n1.X && n2.Y > n1.Y)
+            {
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle += 270;
+            }
+            return angle;
+        }
+        public double distance{get; set;}
         public int length;
         public Node head;
         public Node tail;
@@ -294,5 +336,27 @@ namespace Microsoft.Kinect.TrackingRobot
         public HandPath() : base(){ }
         public HandPath(Point point) : base(point) { }
         public Point tailPoint() { return tail.myPoint; }
+    }
+
+    //angle class
+    public class Angle
+    {
+        private double PI = Math.PI;
+        public double angle;
+      
+
+        public Angle()
+        {
+            angle = 0;
+        }
+        public Angle(double ang)
+        {
+            angle = ang;
+        }
+        public double DEGTORAD()
+        {
+            return angle * PI / 180;
+        }
+        
     }
 }

@@ -11,7 +11,3 @@ D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot
 D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Release\GenerateResource.write.1.tlog
 D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.exe
 D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.pdb
-C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.exe
-C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.pdb
-C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.exe
-C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Release\Tracking Robot.pdb
