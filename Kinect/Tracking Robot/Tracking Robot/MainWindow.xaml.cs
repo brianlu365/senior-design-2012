@@ -7,10 +7,12 @@ namespace Microsoft.Kinect.TrackingRobot
     using System.Windows.Media;
     using Microsoft.Kinect;
     using System.Diagnostics;
+    using System.Timers;
 
   
     public partial class MainWindow : Window
     {
+       
         private const float RenderWidth = 640.0f;
         private const float RenderHeight = 480.0f;
         private const double JointThickness = 3;
@@ -25,51 +27,46 @@ namespace Microsoft.Kinect.TrackingRobot
         private DrawingGroup drawingGroup;
         private DrawingImage imageSource;
         //...
-
-        // a linked list structor to hold the path of the hand
+        //Timer
+        private Timer timer = new Timer(100);  //0.1 sec per tick
+        private int Timer_duration = 0;
+        //variables for left hand detection
+        private Point currentLeftHandPosition;
+        private Point previousLeftHandPosition;
+        private bool updatePath = false;
+        private bool isFirstFrameDetected = false;
+        // a linked list structure to hold the path of the hand
         private HandPath handPath = new HandPath();
         
         public MainWindow()
         {
+            timer.Elapsed += new ElapsedEventHandler(timerEventHandler);
             InitializeComponent();
         }
-
-        private static void RenderClippedEdges(Skeleton skeleton, DrawingContext drawingContext)
+        //event handler for timer
+        private void timerEventHandler(Object sender, ElapsedEventArgs e)
         {
-            if (skeleton.ClippedEdges.HasFlag(FrameEdges.Bottom))
+            Timer_duration += 1;
+            if (Timer_duration >= 100000000)
             {
-                drawingContext.DrawRectangle(
-                    Brushes.Red,
-                    null,
-                    new Rect(0, RenderHeight - ClipBoundsThickness, RenderWidth, ClipBoundsThickness));
-            }
-
-            if (skeleton.ClippedEdges.HasFlag(FrameEdges.Top))
-            {
-                drawingContext.DrawRectangle(
-                    Brushes.Red,
-                    null,
-                    new Rect(0, 0, RenderWidth, ClipBoundsThickness));
-            }
-
-            if (skeleton.ClippedEdges.HasFlag(FrameEdges.Left))
-            {
-                drawingContext.DrawRectangle(
-                    Brushes.Red,
-                    null,
-                    new Rect(0, 0, ClipBoundsThickness, RenderHeight));
-            }
-
-            if (skeleton.ClippedEdges.HasFlag(FrameEdges.Right))
-            {
-                drawingContext.DrawRectangle(
-                    Brushes.Red,
-                    null,
-                    new Rect(RenderWidth - ClipBoundsThickness, 0, ClipBoundsThickness, RenderHeight));
+                Timer_duration = 0;
             }
         }
-
+        private void startTimer()
+        {
+            Timer_duration = 0;
+            timer.Enabled = true;
+            timer.Start();
+        }
+        private void stopTimer()
+        {
+            timer.Enabled = false;
+            timer.Stop();
+        }
+       
       
+
+        //Initialize
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             // Create the drawing group we'll use for drawing
@@ -108,14 +105,9 @@ namespace Microsoft.Kinect.TrackingRobot
                     this.sensor = null;
                 }
             }
-
-            if (null == this.sensor)
-            {
-                
-            }
         }
 
-        
+        //close window
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (null != this.sensor)
@@ -123,8 +115,7 @@ namespace Microsoft.Kinect.TrackingRobot
                 this.sensor.Stop();
             }
         }
-
-       
+        // the display function
         private void SensorSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             Skeleton[] skeletons = new Skeleton[0];
@@ -147,23 +138,97 @@ namespace Microsoft.Kinect.TrackingRobot
                 {
                     foreach (Skeleton skel in skeletons)
                     {
-                        RenderClippedEdges(skel, dc);
-
+                        //real thing starts here
                         if (skel.TrackingState == SkeletonTrackingState.Tracked)
                         {
+                            //is it the first frame
+                            if (isFirstFrameDetected == false)
+                            {
+                                isFirstFrameDetected = true;
+                                //set inital lefthand position
+                                previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
+                                startTimer();
+                            }
+                            //get current left hand position
+                            currentLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                             
-                            captureRightHandPath(skel);
+                            //for print out
+                            string temp = "(" + previousLeftHandPosition.X+ " , " + previousLeftHandPosition.Y + ")";
+                            textBox4.Text = temp;
+                            temp = "(" + currentLeftHandPosition.X + " , " + currentLeftHandPosition.Y + ")";
+                            textBox3.Text = temp;
+                            
+                            //calculate the distance left hand traveled
+                            double leftHandDistanceTraveled = Math.Sqrt(Math.Pow(currentLeftHandPosition.X - previousLeftHandPosition.X, 2) + Math.Pow(currentLeftHandPosition.Y - previousLeftHandPosition.Y, 2));
+                            
+                            //for print out
+                            temp = " " + leftHandDistanceTraveled + " ";
+                            textBox2.Text = temp;
+
+                            //decide whether to start draw line
+                            //if the left hand distance traveled is greater than 150
+                            if (!updatePath)
+                            {
+                                if (leftHandDistanceTraveled >= 150)
+                                {
+                                    //if time duration is smaller than 0.5 sec
+                                    if (Timer_duration < 5)
+                                    {
+                                        updatePath = true;
+                                        previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
+                                        handPath.deleteAll();
+                                        startTimer();
+                                        goto next;
+                                    }
+
+                                }
+                                //if the left hand distance traveled is smaller than 150
+                                else
+                                {
+                                    if (Timer_duration >= 5)
+                                    {
+                                        previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
+                                        startTimer();
+                                    }
+                                }
+                            }
+
+                            //decide whether to stop updating the line
+                            if (updatePath)
+                            {
+                                if (leftHandDistanceTraveled >= 150)
+                                {
+                                    if (Timer_duration < 5)
+                                    {
+                                        updatePath = false;
+                                        previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
+                                        startTimer();
+                                    }
+                                }
+                                else
+                                {
+                                    if (Timer_duration >= 5)
+                                    {
+                                        previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
+                                        startTimer();
+                                    }
+                                }
+                            }
+                        next:
+                            //update the path
+                            if (updatePath)
+                            {
+                                captureRightHandPath(skel);
+                            }
+                            
+
+                            //draw the path
                             drawRightHandPath(dc);
+                            //draw current right hand position
                             drawCurrentHandPosition(dc, skel);
 
-                        }
-                        else if (skel.TrackingState == SkeletonTrackingState.PositionOnly)
-                        {
-                      
-                            captureRightHandPath(skel);
-                            drawRightHandPath(dc);
-                            drawCurrentHandPosition(dc, skel);
-                        }
+                        }                    
+                        //else if (skel.TrackingState == SkeletonTrackingState.PositionOnly){}
                     }
                 }
 
@@ -228,6 +293,8 @@ namespace Microsoft.Kinect.TrackingRobot
             String text = "(" + currentPoint.X + " , " + currentPoint.Y+ ")";
             textBox1.Text = text;
         }
+
+      
     }
     //hard coded linked list
     public class Node
@@ -235,19 +302,20 @@ namespace Microsoft.Kinect.TrackingRobot
 
         public Node()
         {
-            next = null;
+            pre = next = null;
             turnAngle = new Angle();
         }
         public Node(Point p)
         {
             myPoint.X = p.X;
             myPoint.Y = p.Y;
-            next = null;
+            pre =  next = null;
             turnAngle = new Angle();
         }
 
         public Point myPoint;
         public Node next;
+        public Node pre;
         public Angle turnAngle;
     }
     public class LinkedList
@@ -257,14 +325,14 @@ namespace Microsoft.Kinect.TrackingRobot
             head = null;
             tail = null;
             length = 0;
-            distance = 10.0;
+            distance = 20.0;
         }
         public LinkedList(Point point)
         {
             head = new Node(point);
             tail = head;
             length = 1;
-            distance = 10.0;
+            distance = 20.0;
 
         }
         public void addNode(Point point)
@@ -280,12 +348,14 @@ namespace Microsoft.Kinect.TrackingRobot
                 head.turnAngle.angle = calculateAngle(head.myPoint, point);
                 head.next = new Node(point);
                 tail = head.next;
+                tail.pre = head;
                 length += 1;
             }
             else
             {
                 tail.turnAngle.angle = calculateAngle(tail.myPoint, point);
                 tail.next = new Node(point);
+                tail.next.pre = tail;
                 tail = tail.next;
                 length += 1;
             }

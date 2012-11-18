@@ -48,9 +48,9 @@
 
     <Grid Name="layoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="138*" />
-            <ColumnDefinition Width="69*" />
-            <ColumnDefinition Width="521*" />
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="147" />
+            <ColumnDefinition Width="381*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -58,8 +58,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Margin="0,0,0,20" Grid.ColumnSpan="3">
+        <DockPanel Margin="0,0,0,6" Grid.ColumnSpan="3" Height="42">
             <Image DockPanel.Dock="Left"  Stretch="None" Margin="0 10 0 5"/>
+            <TextBox Height="28" Name="textBox1" Width="120" />
+            <TextBox Height="28" Name="textBox2" Width="120" />
+            <TextBox Height="28" Name="textBox3" Width="120" />
+            <TextBox Height="28" Name="textBox4" Width="120" />
         </DockPanel>
         <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" Grid.ColumnSpan="3">
             <Image Name="Image" Width="640" Height="480"/>
@@ -67,6 +71,5 @@
         <StatusBar Grid.Row="3" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}" Grid.ColumnSpan="3">
             <StatusBarItem Padding="0 0 0 10"></StatusBarItem>
         </StatusBar>
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="textBox1" VerticalAlignment="Top" Width="120" Grid.Column="2" Margin="381,622,0,0" />
     </Grid>
 </Window>
