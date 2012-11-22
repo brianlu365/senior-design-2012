@@ -23,6 +23,7 @@ namespace Microsoft.Kinect.TrackingRobot
         private readonly Brush inferredJointBrush = Brushes.Green;
         private readonly Pen trackedBonePen = new Pen(Brushes.Green, 6);
         private readonly Pen inferredBonePen = new Pen(Brushes.Gray, 1);
+        private readonly Pen robotPen = new Pen(Brushes.Blue, 1);
         private KinectSensor sensor;
         private DrawingGroup drawingGroup;
         private DrawingImage imageSource;
@@ -38,6 +39,9 @@ namespace Microsoft.Kinect.TrackingRobot
         // a linked list structure to hold the path of the hand
         private HandPath handPath = new HandPath();
         
+        //test area
+        public Robot robot = new Robot();
+
         public MainWindow()
         {
             timer.Elapsed += new ElapsedEventHandler(timerEventHandler);
@@ -226,7 +230,10 @@ namespace Microsoft.Kinect.TrackingRobot
                             drawRightHandPath(dc);
                             //draw current right hand position
                             drawCurrentHandPosition(dc, skel);
-
+                            string word = "320,320,360,320,360,380,320,380,90";
+                            robot.setRobot(word);
+                            textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
+                            drawRobot(dc, robot);
                         }                    
                         //else if (skel.TrackingState == SkeletonTrackingState.PositionOnly){}
                     }
@@ -292,6 +299,14 @@ namespace Microsoft.Kinect.TrackingRobot
             Debug.Print("currentPoint = (%d , %d)\n", currentPoint.X, currentPoint.Y);
             String text = "(" + currentPoint.X + " , " + currentPoint.Y+ ")";
             textBox1.Text = text;
+        }
+        // draw the robot
+        private void drawRobot(DrawingContext drawingContext, Robot robot)
+        {
+            drawingContext.DrawLine(robotPen, robot.topLeft, robot.topRight);
+            drawingContext.DrawLine(robotPen, robot.topRight, robot.bottomRight);
+            drawingContext.DrawLine(robotPen, robot.bottomRight, robot.bottomLeft);
+            drawingContext.DrawLine(robotPen, robot.bottomLeft, robot.topLeft);
         }
 
       
@@ -438,10 +453,15 @@ namespace Microsoft.Kinect.TrackingRobot
         }
         public Rectangle(Point tl, Point tr, Point bl, Point br)
         {
-            setPoint(topLeft, tl);
-            setPoint(topRight, tr);
-            setPoint(bottomLeft, bl);
-            setPoint(bottomRight, br);
+           
+            topLeft.X = tl.X;
+            topLeft.Y = tl.Y;
+            topRight.X = tr.X;
+            topRight.Y = tr.Y;
+            bottomLeft.X = bl.X;
+            bottomLeft.Y = bl.Y;
+            bottomRight.X = br.X;
+            bottomRight.Y = br.Y;
             double bottomCenter_X = (br.X + bl.X) / 2.0;
             double bottomCenter_Y = (br.Y + bl.Y) / 2.0;
             double topCenter_X = (tl.X + tr.X) / 2.0;
@@ -481,19 +501,15 @@ namespace Microsoft.Kinect.TrackingRobot
             }
             return ang;
         }
-        protected void setPoint(Point a, Point b)
-        {
-            a.X = b.X;
-            a.Y = b.Y;
-        }
-        public Point topLeft;
-        public Point bottomRight;
-        public Point topRight;
-        public Point bottomLeft;
+       
+        public Point topLeft = new Point();
+        public Point bottomRight = new Point();
+        public Point topRight = new Point();
+        public Point bottomLeft = new Point();
         public double width;
         public double length;
-        public Point center;
-        public Angle angle;
+        public Point center = new Point();
+        public Angle angle = new Angle();
     }
     // Robot class
     public class Robot : Rectangle
@@ -501,10 +517,14 @@ namespace Microsoft.Kinect.TrackingRobot
         public Robot() : base() { }
         public Robot(Point tl, Point tr, Point bl, Point br) : base(tl, tr, bl, br) { }
         //accept string "tl.X, tl.Y, tr.X, tr.Y, br.X, br.Y, bl.X, bl.Y, angle"
-        public Robot(String str)
+        public Robot(string str)
+        {
+            setRobot(str);
+        }
+        public void setRobot(string str)
         {
             //split the string
-            char[] delimiterChars = {' ', ',' , '\t', '(', ')'};
+            char[] delimiterChars = { ' ', ',', '\t', '(', ')' };
             string[] words = str.Split(delimiterChars);
             if (words.Length < 9)
             {
@@ -515,10 +535,15 @@ namespace Microsoft.Kinect.TrackingRobot
             Point br = new Point(Double.Parse(words[4]), Double.Parse(words[5]));
             Point bl = new Point(Double.Parse(words[6]), Double.Parse(words[7]));
 
-            setPoint(topLeft, tl);
-            setPoint(topRight, tr);
-            setPoint(bottomLeft, bl);
-            setPoint(bottomRight, br);
+          
+            topLeft.X = tl.X;
+            topLeft.Y = tl.Y;
+            topRight.X = tr.X;
+            topRight.Y = tr.Y;
+            bottomLeft.X = bl.X;
+            bottomLeft.Y = bl.Y;
+            bottomRight.X = br.X;
+            bottomRight.Y = br.Y;
             double bottomCenter_X = (br.X + bl.X) / 2.0;
             double bottomCenter_Y = (br.Y + bl.Y) / 2.0;
             double topCenter_X = (tl.X + tr.X) / 2.0;
