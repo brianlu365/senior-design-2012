@@ -380,19 +380,19 @@ namespace Microsoft.Kinect.TrackingRobot
             else if (n2.X < n1.X && n2.Y < n1.Y)
             {
                 angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
-                angle += 90;
+                angle = 180 - angle;
             }
             //region III
             else if (n2.X < n1.X && n2.Y > n1.Y)
             {
                 angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
-                angle += 180;
+                angle = 180 + angle;
             }
             //region IV
             else if (n2.X > n1.X && n2.Y > n1.Y)
             {
                 angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
-                angle += 270;
+                angle = 360 - angle;
             }
             return angle;
         }
@@ -428,5 +428,106 @@ namespace Microsoft.Kinect.TrackingRobot
             return angle * PI / 180;
         }
         
+    }
+    // Rectangle Class
+    public class Rectangle
+    {
+        public Rectangle()
+        {
+            topLeft.X = topLeft.Y = bottomRight.X = bottomRight.Y = 0;
+        }
+        public Rectangle(Point tl, Point tr, Point bl, Point br)
+        {
+            setPoint(topLeft, tl);
+            setPoint(topRight, tr);
+            setPoint(bottomLeft, bl);
+            setPoint(bottomRight, br);
+            double bottomCenter_X = (br.X + bl.X) / 2.0;
+            double bottomCenter_Y = (br.Y + bl.Y) / 2.0;
+            double topCenter_X = (tl.X + tr.X) / 2.0;
+            double topCenter_Y = (tl.Y + tr.Y) / 2.0;
+            center.X = (bottomCenter_X + topCenter_X) / 2.0;
+            center.Y = (bottomCenter_Y + topCenter_Y) / 2.0;
+            width = Math.Sqrt(Math.Pow(tl.X - tr.X, 2) + Math.Pow(tl.Y - tr.Y, 2));
+            length = Math.Sqrt(Math.Pow(tr.X - br.X, 2) + Math.Pow(tr.Y - br.Y, 2));
+            angle.angle = calculateAngle();
+        }
+        //calculate the angle that the rectangle tilted
+        protected double calculateAngle()
+        {
+            double ang = 0.0;
+            //region I
+            if (bottomRight.X <= topRight.X && bottomRight.Y >= topRight.Y)
+            {
+                ang = Math.Abs(Math.Asin((topRight.Y - bottomRight.Y) / length)) * 180 / Math.PI;
+            }
+            //region II
+            else if (bottomRight.X >= topRight.X && bottomRight.Y >= topRight.Y)
+            {
+                ang = Math.Abs(Math.Asin((topRight.Y - bottomRight.Y) / length)) * 180 / Math.PI;
+                ang = 180 - ang;
+            }
+            //region III
+            else if (bottomRight.X >= topRight.X && bottomRight.Y <= topRight.Y)
+            {
+                ang = Math.Abs(Math.Asin((topRight.Y - bottomRight.Y) / length)) * 180 / Math.PI;
+                ang = 180 + ang;
+            }
+            //region IV
+            else if (bottomRight.X <= topRight.X && bottomRight.Y <= topRight.Y)
+            {
+                ang = Math.Abs(Math.Asin((topRight.Y - bottomRight.Y) / length)) * 180 / Math.PI;
+                ang = 360 - ang;
+            }
+            return ang;
+        }
+        protected void setPoint(Point a, Point b)
+        {
+            a.X = b.X;
+            a.Y = b.Y;
+        }
+        public Point topLeft;
+        public Point bottomRight;
+        public Point topRight;
+        public Point bottomLeft;
+        public double width;
+        public double length;
+        public Point center;
+        public Angle angle;
+    }
+    // Robot class
+    public class Robot : Rectangle
+    {
+        public Robot() : base() { }
+        public Robot(Point tl, Point tr, Point bl, Point br) : base(tl, tr, bl, br) { }
+        //accept string "tl.X, tl.Y, tr.X, tr.Y, br.X, br.Y, bl.X, bl.Y, angle"
+        public Robot(String str)
+        {
+            //split the string
+            char[] delimiterChars = {' ', ',' , '\t', '(', ')'};
+            string[] words = str.Split(delimiterChars);
+            if (words.Length < 7)
+            {
+                MessageBox.Show("the string is not long enough");
+            }
+            Point tl = new Point(Double.Parse(words[0]), Double.Parse(words[1]));
+            Point tr = new Point(Double.Parse(words[2]), Double.Parse(words[3]));
+            Point br = new Point(Double.Parse(words[4]), Double.Parse(words[5]));
+            Point bl = new Point(Double.Parse(words[5]), Double.Parse(words[6]));
+
+            setPoint(topLeft, tl);
+            setPoint(topRight, tr);
+            setPoint(bottomLeft, bl);
+            setPoint(bottomRight, br);
+            double bottomCenter_X = (br.X + bl.X) / 2.0;
+            double bottomCenter_Y = (br.Y + bl.Y) / 2.0;
+            double topCenter_X = (tl.X + tr.X) / 2.0;
+            double topCenter_Y = (tl.Y + tr.Y) / 2.0;
+            center.X = (bottomCenter_X + topCenter_X) / 2.0;
+            center.Y = (bottomCenter_Y + topCenter_Y) / 2.0;
+            width = Math.Sqrt(Math.Pow(tl.X - tr.X, 2) + Math.Pow(tl.Y - tr.Y, 2));
+            length = Math.Sqrt(Math.Pow(tr.X - br.X, 2) + Math.Pow(tr.Y - br.Y, 2));
+            angle.angle = calculateAngle();
+        }
     }
 }
