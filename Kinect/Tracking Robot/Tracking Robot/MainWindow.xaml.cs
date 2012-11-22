@@ -506,14 +506,14 @@ namespace Microsoft.Kinect.TrackingRobot
             //split the string
             char[] delimiterChars = {' ', ',' , '\t', '(', ')'};
             string[] words = str.Split(delimiterChars);
-            if (words.Length < 7)
+            if (words.Length < 9)
             {
                 MessageBox.Show("the string is not long enough");
             }
             Point tl = new Point(Double.Parse(words[0]), Double.Parse(words[1]));
             Point tr = new Point(Double.Parse(words[2]), Double.Parse(words[3]));
             Point br = new Point(Double.Parse(words[4]), Double.Parse(words[5]));
-            Point bl = new Point(Double.Parse(words[5]), Double.Parse(words[6]));
+            Point bl = new Point(Double.Parse(words[6]), Double.Parse(words[7]));
 
             setPoint(topLeft, tl);
             setPoint(topRight, tr);
