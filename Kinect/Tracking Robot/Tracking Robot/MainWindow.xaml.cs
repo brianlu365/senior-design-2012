@@ -32,8 +32,7 @@ namespace Microsoft.Kinect.TrackingRobot
         private Timer timer = new Timer(100);  //0.1 sec per tick
         private int Timer_duration = 0;
         //Robot Timer
-        private Timer robotTimer = new Timer(1000);
-        private int Robot_Timer_duration = 0;
+        private Timer robotTimer = new Timer(200);
         //variables for left hand detection
         private Point currentLeftHandPosition;
         private Point previousLeftHandPosition;
@@ -41,10 +40,9 @@ namespace Microsoft.Kinect.TrackingRobot
         private bool isFirstFrameDetected = false;
         // a linked list structure to hold the path of the hand
         private HandPath handPath = new HandPath();
-        
         //Robot
         public Robot robot = new Robot();
-
+        public int initialTurn = 0; //0 for left and 1 for right
         //test area
         string word = "320,320,330,320,330,340,320,340,90";
         public MainWindow()
@@ -52,7 +50,6 @@ namespace Microsoft.Kinect.TrackingRobot
             timer.Elapsed += new ElapsedEventHandler(timerEventHandler);
             robotTimer.Elapsed += new ElapsedEventHandler(robotTimerEventHandler);
             robot.setRobot(word);
-            robot.rotateRobot(new Angle(180));
             InitializeComponent();
         }
         //event handler for timer
@@ -77,7 +74,42 @@ namespace Microsoft.Kinect.TrackingRobot
         }
         private void robotTimerEventHandler(Object sender, ElapsedEventArgs e)
         {
-            robot.moveRobot();
+            if (handPath.iterator.next != null)
+            {
+                double dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.myPoint.Y, 2));
+                if (dist > handPath.distance)
+                {
+                    handPath.iterator = handPath.iterator.next;
+                    if (handPath.iterator != null)
+                    {
+                        if (robot.angle.angle < handPath.iterator.turnAngle.angle)
+                            initialTurn = 0; //left
+                        else if (robot.angle.angle > handPath.iterator.turnAngle.angle)
+                            initialTurn = 1; //right;
+                        else
+                            initialTurn = 3;
+                    }
+                }
+                if (handPath.iterator != null)
+                {
+                    if (robot.angle.angle < handPath.iterator.turnAngle.angle && initialTurn == 0)
+                    {
+                        robot.rotateRobot(handPath.iterator.turnAngle);
+                    }
+                    else if (robot.angle.angle > handPath.iterator.turnAngle.angle && initialTurn == 1)
+                    {
+                        robot.rotateRobot(handPath.iterator.turnAngle);
+                    }
+                    else
+                    {
+                        robot.moveRobot();
+                    }
+                }
+            }             
+            else
+            {
+                robotTimer.Stop();
+            }
         }
         
       
@@ -172,7 +204,7 @@ namespace Microsoft.Kinect.TrackingRobot
                             string temp = "(" + previousLeftHandPosition.X+ " , " + previousLeftHandPosition.Y + ")";
                             textBox4.Text = temp;
                             temp = "(" + currentLeftHandPosition.X + " , " + currentLeftHandPosition.Y + ")";
-                            textBox3.Text = temp;
+                            //textBox3.Text = temp;
                             
                             //calculate the distance left hand traveled
                             double leftHandDistanceTraveled = Math.Sqrt(Math.Pow(currentLeftHandPosition.X - previousLeftHandPosition.X, 2) + Math.Pow(currentLeftHandPosition.Y - previousLeftHandPosition.Y, 2));
@@ -195,6 +227,7 @@ namespace Microsoft.Kinect.TrackingRobot
                                             updatePath = true;
                                             previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                                             handPath.deleteAll();
+
                                             startTimer();
                                             goto next;
                                         }
@@ -228,6 +261,13 @@ namespace Microsoft.Kinect.TrackingRobot
                                         previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                                         startTimer();
                                         //move robot
+                                        handPath.iterator = handPath.head;
+                                        if (robot.angle.angle < handPath.iterator.turnAngle.angle)
+                                            initialTurn = 0; //left
+                                        else if (robot.angle.angle > handPath.iterator.turnAngle.angle)
+                                            initialTurn = 1; //right
+                                        else
+                                            initialTurn = 3;
                                         robotTimer.Enabled = true;
                                         robotTimer.Start();
                                     }
@@ -246,6 +286,7 @@ namespace Microsoft.Kinect.TrackingRobot
                             if (updatePath)
                             {
                                 captureRightHandPath(skel);
+                                
                             }
                             
 
@@ -258,6 +299,7 @@ namespace Microsoft.Kinect.TrackingRobot
                             textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
                             textBox2.Text = "" + robot.angle.angle + "";
                             drawRobot(dc, robot);
+                            
                         }                    
                         //else if (skel.TrackingState == SkeletonTrackingState.PositionOnly){}
                     }
@@ -296,6 +338,8 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (distance >= handPath.distance)
                 {
                     handPath.addNode(currentPoint);
+                    if (handPath.tail.pre != null)
+                        textBox3.Text = "" + handPath.tail.pre.turnAngle.angle;
                 }
             }
             if (handPath.length > 100)
@@ -353,20 +397,18 @@ namespace Microsoft.Kinect.TrackingRobot
         public Node()
         {
             pre = next = null;
-            turnAngle = new Angle();
         }
         public Node(Point p)
         {
             myPoint.X = p.X;
             myPoint.Y = p.Y;
-            pre =  next = null;
-            turnAngle = new Angle();
+            pre = next = null;
         }
 
         public Point myPoint;
         public Node next;
         public Node pre;
-        public Angle turnAngle;
+        public Angle turnAngle = new Angle();
     }
     public class LinkedList
     {
@@ -375,14 +417,16 @@ namespace Microsoft.Kinect.TrackingRobot
             head = null;
             tail = null;
             length = 0;
-            distance = 20.0;
+            distance = 40.0;
+            iterator = head;
         }
         public LinkedList(Point point)
         {
             head = new Node(point);
             tail = head;
             length = 1;
-            distance = 20.0;
+            distance = 40.0;
+            iterator = head;
 
         }
         public void addNode(Point point)
@@ -450,6 +494,7 @@ namespace Microsoft.Kinect.TrackingRobot
         public int length;
         public Node head;
         public Node tail;
+        public Node iterator;
     }
     public class HandPath : LinkedList
     {
@@ -607,16 +652,13 @@ namespace Microsoft.Kinect.TrackingRobot
         }
         public void rotateRobot(Angle _angle)
         {
-            double _dw;
             if (angle.angle < _angle.angle)
             {
-                _dw = dw;
-                angle.moveAngle(_dw);
+                angle.moveAngle(dw);
             }
             else if (angle.angle > _angle.angle)
             {
-                _dw = -dw;
-                angle.moveAngle(_dw);
+                angle.moveAngle(-dw);
             }
             //...
             double bottomLeftAngle = angle.angle - 180 - centerAngle;
@@ -656,6 +698,6 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        private const double dw = 30;
+        public const double dw = 2;
     }
 }
