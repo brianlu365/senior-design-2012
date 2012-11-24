@@ -42,7 +42,6 @@ namespace Microsoft.Kinect.TrackingRobot
         private HandPath handPath = new HandPath();
         //Robot
         public Robot robot = new Robot();
-        public int initialTurn = 0; //0 for left and 1 for right
         //test area
         string word = "320,320,330,320,330,340,320,340,90";
         public MainWindow()
@@ -77,31 +76,30 @@ namespace Microsoft.Kinect.TrackingRobot
             if (handPath.iterator.next != null)
             {
                 double dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.myPoint.Y, 2));
-                if (dist > handPath.distance)
+                Console.WriteLine(" " + dist + " ");
+                if (dist >= handPath.distance)
                 {
                     handPath.iterator = handPath.iterator.next;
                     if (handPath.iterator != null)
                     {
-                        if (robot.angle.angle < handPath.iterator.turnAngle.angle)
-                            initialTurn = 0; //left
-                        else if (robot.angle.angle > handPath.iterator.turnAngle.angle)
-                            initialTurn = 1; //right;
-                        else
-                            initialTurn = 3;
+                        robot.determineInitialRotationDirection(handPath.iterator.turnAngle);
                     }
                 }
                 if (handPath.iterator != null)
                 {
-                    if (robot.angle.angle < handPath.iterator.turnAngle.angle && initialTurn == 0)
+                    robot.determineRotationDirection(handPath.iterator.turnAngle);
+                    if (robot.rotationDirection == Robot.LEFT && robot.initialRotationDirection == Robot.LEFT)
                     {
                         robot.rotateRobot(handPath.iterator.turnAngle);
                     }
-                    else if (robot.angle.angle > handPath.iterator.turnAngle.angle && initialTurn == 1)
+                    else if (robot.rotationDirection == Robot.RIGHT && robot.initialRotationDirection == Robot.RIGHT)
                     {
                         robot.rotateRobot(handPath.iterator.turnAngle);
                     }
                     else
                     {
+                        
+                        robot.correctAngle(handPath.iterator.turnAngle);
                         robot.moveRobot();
                     }
                 }
@@ -262,12 +260,7 @@ namespace Microsoft.Kinect.TrackingRobot
                                         startTimer();
                                         //move robot
                                         handPath.iterator = handPath.head;
-                                        if (robot.angle.angle < handPath.iterator.turnAngle.angle)
-                                            initialTurn = 0; //left
-                                        else if (robot.angle.angle > handPath.iterator.turnAngle.angle)
-                                            initialTurn = 1; //right
-                                        else
-                                            initialTurn = 3;
+                                        robot.determineInitialRotationDirection(handPath.iterator.turnAngle);
                                         robotTimer.Enabled = true;
                                         robotTimer.Start();
                                     }
@@ -525,6 +518,14 @@ namespace Microsoft.Kinect.TrackingRobot
         public void moveAngle(double w)
         {
             angle += w;
+            if (angle < 0)
+            {
+                angle = angle + 360;
+            }
+            else if (angle >= 360)
+            {
+                angle = angle - 360;
+            }
         }
         
     }
@@ -650,15 +651,109 @@ namespace Microsoft.Kinect.TrackingRobot
             dx = dl * Math.Cos(angle.DEGTORAD());
             dy = -dl * Math.Sin(angle.DEGTORAD());
         }
+        //determine rotation direction : may not be used
+        public void determineRotationDirection(Angle _angle)
+        {
+            if (angle.angle < _angle.angle)
+            {
+                double d_angle = _angle.angle - angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    rotationDirection = LEFT;
+                }
+                else
+                {
+                    rotationDirection = RIGHT;
+                }
+
+            }
+            else if (angle.angle > _angle.angle)
+            {
+                double d_angle = angle.angle - _angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    rotationDirection = RIGHT;
+                }
+                else
+                {
+                    rotationDirection = LEFT;
+                }
+            }
+            else
+            {
+                rotationDirection = STRAIGHT;
+            }
+        }
+        //determine initial Rotation Direction
+        public void determineInitialRotationDirection(Angle _angle)
+        {
+            if (angle.angle < _angle.angle)
+            {
+                double d_angle = _angle.angle - angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    initialRotationDirection = LEFT;
+                }
+                else
+                {
+                    initialRotationDirection = RIGHT;
+                }
+
+            }
+            else if (angle.angle > _angle.angle)
+            {
+                double d_angle = angle.angle - _angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    initialRotationDirection = RIGHT;
+                }
+                else
+                {
+                    initialRotationDirection = LEFT;
+                }
+            }
+            else
+            {
+                initialRotationDirection = STRAIGHT;
+            }
+        }
+        // rotate animation
         public void rotateRobot(Angle _angle)
         {
             if (angle.angle < _angle.angle)
             {
-                angle.moveAngle(dw);
+                double d_angle = _angle.angle - angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    angle.moveAngle(dw);
+                }
+                else
+                {
+                    angle.moveAngle(-dw);
+                }
+
             }
             else if (angle.angle > _angle.angle)
             {
-                angle.moveAngle(-dw);
+                double d_angle = angle.angle - _angle.angle;
+                double neg_d_angle = 360 - d_angle;
+                if (d_angle <= neg_d_angle)
+                {
+                    angle.moveAngle(-dw);
+                }
+                else
+                {
+                    angle.moveAngle(dw);
+                }
+            }
+            else
+            {
+                rotationDirection = STRAIGHT;
             }
             //...
             double bottomLeftAngle = angle.angle - 180 - centerAngle;
@@ -675,6 +770,36 @@ namespace Microsoft.Kinect.TrackingRobot
             topRight.X = center.X + centerDistance * Math.Cos(topRightAngle * Math.PI / 180);
             topRight.Y = center.Y - centerDistance * Math.Sin(topRightAngle * Math.PI / 180);
             calculateDxDy();
+        }
+        // correct angle after rotation
+        public void correctAngle(Angle _angle)
+        {
+            double d_angle = Math.Abs(angle.angle - _angle.angle);
+            if (angle.angle < _angle.angle)
+            {
+                angle.moveAngle(d_angle);
+            }
+            else if (angle.angle > _angle.angle)
+            {
+                angle.moveAngle(-d_angle);
+            }
+            if (angle.angle != _angle.angle)
+            {
+                double bottomLeftAngle = angle.angle - 180 - centerAngle;
+                double bottomRightAngle = angle.angle - 180 + centerAngle;
+                double topLeftAngle = angle.angle + centerAngle;
+                double topRightAngle = angle.angle - centerAngle;
+
+                bottomLeft.X = center.X + centerDistance * Math.Cos(bottomLeftAngle * Math.PI / 180);
+                bottomLeft.Y = center.Y - centerDistance * Math.Sin(bottomLeftAngle * Math.PI / 180);
+                bottomRight.X = center.X + centerDistance * Math.Cos(bottomRightAngle * Math.PI / 180);
+                bottomRight.Y = center.Y - centerDistance * Math.Sin(bottomRightAngle * Math.PI / 180);
+                topLeft.X = center.X + centerDistance * Math.Cos(topLeftAngle * Math.PI / 180);
+                topLeft.Y = center.Y - centerDistance * Math.Sin(topLeftAngle * Math.PI / 180);
+                topRight.X = center.X + centerDistance * Math.Cos(topRightAngle * Math.PI / 180);
+                topRight.Y = center.Y - centerDistance * Math.Sin(topRightAngle * Math.PI / 180);
+                calculateDxDy();
+            }
         }
         public void moveRobot()
         {
@@ -699,5 +824,10 @@ namespace Microsoft.Kinect.TrackingRobot
         private const double dl = 5;
         //anglar speed
         public const double dw = 2;
+        public const int LEFT = 0;
+        public const int RIGHT = 1;
+        public const int STRAIGHT = 3;
+        public int rotationDirection = STRAIGHT;
+        public int initialRotationDirection = STRAIGHT;
     }
 }
