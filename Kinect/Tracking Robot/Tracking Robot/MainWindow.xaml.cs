@@ -76,8 +76,11 @@ namespace Microsoft.Kinect.TrackingRobot
             if (handPath.iterator.next != null)
             {
                 double dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.myPoint.Y, 2));
+                //double next_dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.next.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.next.myPoint.Y, 2));
+                // distance between two points
+                double d = Math.Sqrt(Math.Pow(handPath.iterator.myPoint.X - handPath.iterator.next.myPoint.X, 2) + Math.Pow(handPath.iterator.myPoint.Y - handPath.iterator.next.myPoint.Y, 2));
                 Console.WriteLine(" " + dist + " ");
-                if (dist >= handPath.distance)
+                if (dist >= d)
                 {
                     handPath.iterator = handPath.iterator.next;
                     if (handPath.iterator != null)
@@ -101,6 +104,7 @@ namespace Microsoft.Kinect.TrackingRobot
                         
                         robot.correctAngle(handPath.iterator.turnAngle);
                         robot.moveRobot();
+                       
                     }
                 }
             }             
@@ -182,7 +186,7 @@ namespace Microsoft.Kinect.TrackingRobot
 
                 if (skeletons.Length != 0)
                 {
-                    foreach (Skeleton skel in skeletons)
+                    foreach(Skeleton skel in skeletons)
                     {
                         //real thing starts here
                         if (skel.TrackingState == SkeletonTrackingState.Tracked)
@@ -199,23 +203,23 @@ namespace Microsoft.Kinect.TrackingRobot
                             currentLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                             
                             //for print out
-                            string temp = "(" + previousLeftHandPosition.X+ " , " + previousLeftHandPosition.Y + ")";
-                            textBox4.Text = temp;
-                            temp = "(" + currentLeftHandPosition.X + " , " + currentLeftHandPosition.Y + ")";
+                            //string temp = "(" + previousLeftHandPosition.X+ " , " + previousLeftHandPosition.Y + ")";
+                            //textBox4.Text = temp;
+                            //temp = "(" + currentLeftHandPosition.X + " , " + currentLeftHandPosition.Y + ")";
                             //textBox3.Text = temp;
                             
                             //calculate the distance left hand traveled
                             double leftHandDistanceTraveled = Math.Sqrt(Math.Pow(currentLeftHandPosition.X - previousLeftHandPosition.X, 2) + Math.Pow(currentLeftHandPosition.Y - previousLeftHandPosition.Y, 2));
                             
                             //for print out
-                            temp = " " + leftHandDistanceTraveled + " ";
-                            textBox2.Text = temp;
+                            //temp = " " + leftHandDistanceTraveled + " ";
+                            //textBox2.Text = temp;
 
                             //decide whether to start draw line
-                            //if the left hand distance traveled is greater than 150
+                            //if the left hand distance traveled is greater than 100
                             if (!updatePath)
                             {
-                                if (leftHandDistanceTraveled >= 150)
+                                if (leftHandDistanceTraveled >= 120)
                                 {
                                     //if time duration is smaller than 0.5 sec
                                     if (Timer_duration < 5)
@@ -251,7 +255,7 @@ namespace Microsoft.Kinect.TrackingRobot
                             //decide whether to stop updating the line
                             if (updatePath)
                             {
-                                if (leftHandDistanceTraveled >= 150)
+                                if (leftHandDistanceTraveled >= 120)
                                 {
                                     if (Timer_duration < 5)
                                     {
@@ -289,10 +293,15 @@ namespace Microsoft.Kinect.TrackingRobot
                             drawCurrentHandPosition(dc, skel);
                             
                             
-                            textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
+                            //textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
                             textBox2.Text = "" + robot.angle.angle + "";
                             drawRobot(dc, robot);
-                            
+                            textBox4.Text = "( " + robot.center.X + " , " + robot.center.Y + " )";
+                            if (handPath.iterator != null)
+                            {
+                               double dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.myPoint.Y, 2));
+                               textBox1.Text = "" + dist + "";
+                            }
                         }                    
                         //else if (skel.TrackingState == SkeletonTrackingState.PositionOnly){}
                     }
@@ -325,7 +334,7 @@ namespace Microsoft.Kinect.TrackingRobot
             }
             else
             {
-                // if the distance between current point and last point exceeds 1, add a new node
+                // if the distance between current point and last point exceeds 40, add a new node
                 Point currentPoint = SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position);
                 double distance = Math.Sqrt(Math.Pow(currentPoint.X - handPath.tailPoint().X, 2) + Math.Pow(currentPoint.Y - handPath.tailPoint().Y, 2));
                 if (distance >= handPath.distance)
@@ -368,6 +377,10 @@ namespace Microsoft.Kinect.TrackingRobot
             drawingContext.DrawLine(robotPen, robot.topRight, robot.bottomRight);
             drawingContext.DrawLine(robotPen, robot.bottomRight, robot.bottomLeft);
             drawingContext.DrawLine(robotPen, robot.bottomLeft, robot.topLeft);
+            drawingContext.DrawLine(robotPen, robot.topLeft, robot.center);
+            drawingContext.DrawLine(robotPen, robot.topRight, robot.center);
+            drawingContext.DrawLine(robotPen, robot.bottomLeft, robot.center);
+            drawingContext.DrawLine(robotPen, robot.bottomRight, robot.center);
         }
 
         // detect whether hand is within the radius of robot
@@ -458,27 +471,28 @@ namespace Microsoft.Kinect.TrackingRobot
         public double calculateAngle(Point n1, Point n2)
         {
             double angle = 0;
+            double d = Math.Sqrt(Math.Pow(n2.X - n1.X, 2) + Math.Pow(n2.Y - n1.Y, 2));
             //region I
             if (n2.X > n1.X && n2.Y < n1.Y)
             {
-                angle = Math.Abs(Math.Asin((n1.Y - n2.Y)/distance)) * 180 / Math.PI;
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / d)) * 180 / Math.PI;
             }
             //region II
             else if (n2.X < n1.X && n2.Y < n1.Y)
             {
-                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / d)) * 180 / Math.PI;
                 angle = 180 - angle;
             }
             //region III
             else if (n2.X < n1.X && n2.Y > n1.Y)
             {
-                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / d)) * 180 / Math.PI;
                 angle = 180 + angle;
             }
             //region IV
             else if (n2.X > n1.X && n2.Y > n1.Y)
             {
-                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / distance)) * 180 / Math.PI;
+                angle = Math.Abs(Math.Asin((n1.Y - n2.Y) / d)) * 180 / Math.PI;
                 angle = 360 - angle;
             }
             return angle;
