@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{73C09582-3B8B-4352-B923-72113CEC14A1}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>aruco_test</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\bin\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">aruco_test.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">aruco_test</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\bin\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">aruco_test.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">aruco_test</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\bin\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">aruco_test.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">aruco_test</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\bin\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">aruco_test.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">aruco_test</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Debug/aruco_test.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\bin\Debug\aruco124.lib;opencv_core220d.lib;opencv_imgproc220d.lib;opencv_features2d220d.lib;opencv_gpu220d.lib;opencv_calib3d220d.lib;opencv_objdetect220d.lib;opencv_video220d.lib;opencv_highgui220d.lib;opencv_ml220d.lib;opencv_legacy220d.lib;opencv_contrib220d.lib;opencv_flann220d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/OpenCV2.2/lib;C:/OpenCV2.2/lib/$(Configuration);;C:/OpenCV2.2/3rdparty/lib;C:/OpenCV2.2/3rdparty/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Debug/aruco_test.lib</ImportLibrary>
+      <LinkIncremental>true</LinkIncremental>
+      <ProgramDataBaseFile>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Debug/aruco_test.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Release/aruco_test.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\bin\Release\aruco124.lib;opencv_core220.lib;opencv_imgproc220.lib;opencv_features2d220.lib;opencv_gpu220.lib;opencv_calib3d220.lib;opencv_objdetect220.lib;opencv_video220.lib;opencv_highgui220.lib;opencv_ml220.lib;opencv_legacy220.lib;opencv_contrib220.lib;opencv_flann220.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/OpenCV2.2/lib;C:/OpenCV2.2/lib/$(Configuration);;C:/OpenCV2.2/3rdparty/lib;C:/OpenCV2.2/3rdparty/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Release/aruco_test.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/Release/aruco_test.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>MinSizeRel</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/MinSizeRel/aruco_test.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\bin\MinSizeRel\aruco124.lib;opencv_core220.lib;opencv_imgproc220.lib;opencv_features2d220.lib;opencv_gpu220.lib;opencv_calib3d220.lib;opencv_objdetect220.lib;opencv_video220.lib;opencv_highgui220.lib;opencv_ml220.lib;opencv_legacy220.lib;opencv_contrib220.lib;opencv_flann220.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/OpenCV2.2/lib;C:/OpenCV2.2/lib/$(Configuration);;C:/OpenCV2.2/3rdparty/lib;C:/OpenCV2.2/3rdparty/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/MinSizeRel/aruco_test.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/MinSizeRel/aruco_test.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>RelWithDebInfo</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/RelWithDebInfo/aruco_test.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/OpenCV2.2/include;C:/OpenCV2.2/include/opencv;C:/OpenCV2.2/3rdparty/include;C:/OpenCV2.2/modules/core/include;C:/OpenCV2.2/modules/imgproc/include;C:/OpenCV2.2/modules/features2d/include;C:/OpenCV2.2/modules/gpu/include;C:/OpenCV2.2/modules/calib3d/include;C:/OpenCV2.2/modules/objdetect/include;C:/OpenCV2.2/modules/video/include;C:/OpenCV2.2/modules/highgui/include;C:/OpenCV2.2/modules/ml/include;C:/OpenCV2.2/modules/legacy/include;C:/OpenCV2.2/modules/contrib/include;C:/OpenCV2.2/modules/flann/include;C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\bin\RelWithDebInfo\aruco124.lib;opencv_core220.lib;opencv_imgproc220.lib;opencv_features2d220.lib;opencv_gpu220.lib;opencv_calib3d220.lib;opencv_objdetect220.lib;opencv_video220.lib;opencv_highgui220.lib;opencv_ml220.lib;opencv_legacy220.lib;opencv_contrib220.lib;opencv_flann220.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/OpenCV2.2/lib;C:/OpenCV2.2/lib/$(Configuration);;C:/OpenCV2.2/3rdparty/lib;C:/OpenCV2.2/3rdparty/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/RelWithDebInfo/aruco_test.lib</ImportLibrary>
+      <LinkIncremental>true</LinkIncremental>
+      <ProgramDataBaseFile>C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/bin/RelWithDebInfo/aruco_test.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\utils\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4 -BC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build --check-stamp-file C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4 -BC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build --check-stamp-file C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4 -BC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build --check-stamp-file C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4 -BC:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build --check-stamp-file C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/utils/CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\utils\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Brian\Downloads\aruco-1.2.4\aruco-1.2.4\aruco-1.2.4\build\utils\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\utils\aruco_test.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/ZERO_CHECK.vcxproj">
+      <Project>AF1C51F0-D95F-45FB-8488-B868ADABA476</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/src/aruco.vcxproj">
+      <Project>7687C8EF-C2FF-4A35-8A72-9421A1280D3E</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

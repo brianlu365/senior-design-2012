@@ -1,0 +1,12 @@
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/src/CMakeFiles/aruco.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_board_pix2meters.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_create_board.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_create_marker.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_selectoptimalmarkers.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_simple.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_simple_board.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_test.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/utils/CMakeFiles/aruco_test_board.dir
+C:/Users/Brian/Downloads/aruco-1.2.4/aruco-1.2.4/aruco-1.2.4/build/CMakeFiles/uninstall.dir

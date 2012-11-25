@@ -1,0 +1,51 @@
+OpenCV data type:
+  CvPoint - point in an image (x,y)
+  CvSize - size of an image (width, height)
+  CvRect - portion of an image (x, y, width, height)
+  CvScaler - RBGA value for a pixel (val[4])
+  cvMat* - matrix (rows, cols, type) for a 2 dimensional matrix
+
+typedef struct _IplImage {
+  int     nSize;
+  int     ID;
+  int     nChannels;
+  int     alphaChannel;
+  int     depth;
+  char      colorModel[4];
+  char      channelSeq[4];
+  int     dataOrder;
+  int     origin;
+  int     align;
+  int     width;
+  int     height;
+  struct _IplROI*   roi;
+  struct _IplImage* maskROI;
+  void*     imageId;
+  struct _IplTileInfo*  tileInfo;
+  int     imageSize;
+  char*     imageData;
+  int     widthStep;
+  int     BorderMode[4];
+  int     BorderConst[3];
+  char*     imageDataOrigin;
+} IplImage;
+
+
+ROI
+  http://nashruddin.com/opencv_region_of_interest_(roi)
+
+draw line
+  cvLine(src1,pt1,pt2,color,thickness,connectivity)
+
+circle
+  cvCircle(src1,pt2,radius,blue,thickness,connectivity)
+
+font
+  CvFont font1; 
+  cvInitFont(&font1,CV_FONT_HERSHEY_DUPLEX,hscale,vscale,shear,thickness,line_type)
+
+  create text
+  cvPutText(src1,text,pt1,&font1,blue)
+
+color spaces
+  http://www.aishack.in/2010/01/color-spaces/

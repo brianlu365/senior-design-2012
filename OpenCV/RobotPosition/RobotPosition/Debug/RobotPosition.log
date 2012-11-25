@@ -1,0 +1,21 @@
+﻿Build started 11/24/2012 12:02:39 AM.
+     1>Project "C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\RobotPosition\RobotPosition.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\Debug\RobotPosition.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\OpenCV2.4.3\opencv\cvblobslib_OpenCV_v8_3\Release /LIBPATH:C:\OpenCV2.4.3\opencv\build\x86\vc10\lib opencv_core243.lib opencv_imgproc243.lib opencv_highgui243.lib opencv_ml243.lib opencv_video243.lib opencv_features2d243.lib opencv_calib3d243.lib opencv_objdetect243.lib opencv_contrib243.lib opencv_legacy243.lib opencv_flann243.lib cvblobslib.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\Debug\RobotPosition.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\Debug\RobotPosition.lib" /MACHINE:X86 Debug\blobdemo.obj
+     1>cvblobslib.lib(blob.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in blobdemo.obj
+     1>cvblobslib.lib(blob.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in blobdemo.obj
+     1>cvblobslib.lib(BlobResult.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in blobdemo.obj
+     1>cvblobslib.lib(BlobResult.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in blobdemo.obj
+     1>cvblobslib.lib(BlobContour.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in blobdemo.obj
+     1>cvblobslib.lib(BlobContour.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in blobdemo.obj
+     1>cvblobslib.lib(BlobOperators.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in blobdemo.obj
+     1>cvblobslib.lib(BlobOperators.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in blobdemo.obj
+     1>cvblobslib.lib(ComponentLabeling.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in blobdemo.obj
+     1>cvblobslib.lib(ComponentLabeling.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in blobdemo.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\Debug\RobotPosition.exe : fatal error LNK1319: 10 mismatches detected
+     1>Done Building Project "C:\Users\Brian\Dropbox\Senior Design 2012\OpenCV\RobotPosition\RobotPosition\RobotPosition.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.31
