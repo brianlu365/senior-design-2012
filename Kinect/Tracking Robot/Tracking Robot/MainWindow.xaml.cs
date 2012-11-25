@@ -8,7 +8,11 @@ namespace Microsoft.Kinect.TrackingRobot
     using Microsoft.Kinect;
     using System.Diagnostics;
     using System.Timers;
-
+    using System.IO.Ports;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
   
     public partial class MainWindow : Window
     {
@@ -110,6 +114,9 @@ namespace Microsoft.Kinect.TrackingRobot
             }             
             else
             {
+                robot.wixel.Open();
+                robot.wixel.Write("f");
+                robot.wixel.Close();
                 robotTimer.Stop();
             }
         }
@@ -219,11 +226,11 @@ namespace Microsoft.Kinect.TrackingRobot
                             //if the left hand distance traveled is greater than 100
                             if (!updatePath)
                             {
-                                if (leftHandDistanceTraveled >= 120)
-                                {
+                                //if (leftHandDistanceTraveled >= 80)
+                                //{
                                     //if time duration is smaller than 0.5 sec
-                                    if (Timer_duration < 5)
-                                    {
+                                  //  if (Timer_duration < 5)
+                                    //{
                                         if (isHandWithinRadius(robot, skel))
                                         {
                                             updatePath = true;
@@ -238,24 +245,24 @@ namespace Microsoft.Kinect.TrackingRobot
                                             previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                                             startTimer();
                                         }
-                                    }
+                                  //  }
 
-                                }
+                              //  }
                                 //if the left hand distance traveled is smaller than 150
-                                else
+                               /* else
                                 {
                                     if (Timer_duration >= 5)
                                     {
                                         previousLeftHandPosition = SkeletonPointToScreen(skel.Joints[JointType.HandLeft].Position);
                                         startTimer();
                                     }
-                                }
+                                }*/
                             }
 
                             //decide whether to stop updating the line
                             if (updatePath)
                             {
-                                if (leftHandDistanceTraveled >= 120)
+                                if (leftHandDistanceTraveled >= 80)
                                 {
                                     if (Timer_duration < 5)
                                     {
@@ -330,7 +337,8 @@ namespace Microsoft.Kinect.TrackingRobot
         {
             if (handPath.head == null)
             {
-                handPath.addNode(SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position));
+               // handPath.addNode(SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position));
+                handPath.addNode(robot.center);
             }
             else
             {
@@ -745,10 +753,20 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (d_angle <= neg_d_angle)
                 {
                     angle.moveAngle(dw);
+                    wixel.Open();
+                    //for (int i = 0; i < 6; i++)
+                        wixel.Write("a");
+                    //wixel.Write("f");
+                    wixel.Close();
                 }
                 else
                 {
                     angle.moveAngle(-dw);
+                    wixel.Open();
+                    //for (int i = 0; i<6; i++)
+                        wixel.Write("d");
+                    //wixel.Write("f");
+                    wixel.Close();
                 }
 
             }
@@ -759,10 +777,20 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (d_angle <= neg_d_angle)
                 {
                     angle.moveAngle(-dw);
+                    wixel.Open();
+                    //for(int i=0; i < 6; i++)
+                        wixel.Write("d");
+                    //wixel.Write("f");
+                    wixel.Close();
                 }
                 else
                 {
                     angle.moveAngle(dw);
+                    wixel.Open();
+                    //for(int i = 0; i<6; i++)
+                        wixel.Write("a");
+                    //wixel.Write("f");
+                    wixel.Close();
                 }
             }
             else
@@ -827,6 +855,11 @@ namespace Microsoft.Kinect.TrackingRobot
             bottomRight.Y += dy;
             center.X += dx;
             center.Y += dy;
+            wixel.Open();
+            //for (int i = 0; i <10; i++)
+                wixel.Write("w");
+            //wixel.Write("f");
+            wixel.Close();
         }
         public double radious = 10;
         //the distance from center of rectangle to the corner
@@ -837,11 +870,12 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        public const double dw = 2;
+        public const double dw = 7;
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int STRAIGHT = 3;
         public int rotationDirection = STRAIGHT;
         public int initialRotationDirection = STRAIGHT;
+        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
     }
 }
