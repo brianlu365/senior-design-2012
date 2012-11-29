@@ -89,6 +89,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     handPath.iterator = handPath.iterator.next;
                     if (handPath.iterator != null)
                     {
+                        robot.correctDistance(handPath.iterator.myPoint);
                         robot.determineInitialRotationDirection(handPath.iterator.turnAngle);
                     }
                 }
@@ -842,6 +843,27 @@ namespace Microsoft.Kinect.TrackingRobot
                 topRight.Y = center.Y - centerDistance * Math.Sin(topRightAngle * Math.PI / 180);
                 calculateDxDy();
             }
+        }
+        // currect distance after movements
+        public void correctDistance(Point point)
+        {
+            center.X = point.X;
+            center.Y = point.Y;
+
+            double bottomLeftAngle = angle.angle - 180 - centerAngle;
+            double bottomRightAngle = angle.angle - 180 + centerAngle;
+            double topLeftAngle = angle.angle + centerAngle;
+            double topRightAngle = angle.angle - centerAngle;
+
+            bottomLeft.X = center.X + centerDistance * Math.Cos(bottomLeftAngle * Math.PI / 180);
+            bottomLeft.Y = center.Y - centerDistance * Math.Sin(bottomLeftAngle * Math.PI / 180);
+            bottomRight.X = center.X + centerDistance * Math.Cos(bottomRightAngle * Math.PI / 180);
+            bottomRight.Y = center.Y - centerDistance * Math.Sin(bottomRightAngle * Math.PI / 180);
+            topLeft.X = center.X + centerDistance * Math.Cos(topLeftAngle * Math.PI / 180);
+            topLeft.Y = center.Y - centerDistance * Math.Sin(topLeftAngle * Math.PI / 180);
+            topRight.X = center.X + centerDistance * Math.Cos(topRightAngle * Math.PI / 180);
+            topRight.Y = center.Y - centerDistance * Math.Sin(topRightAngle * Math.PI / 180);
+            calculateDxDy();
         }
         public void moveRobot()
         {
