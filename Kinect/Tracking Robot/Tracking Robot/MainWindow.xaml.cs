@@ -898,6 +898,6 @@ namespace Microsoft.Kinect.TrackingRobot
         public const int STRAIGHT = 3;
         public int rotationDirection = STRAIGHT;
         public int initialRotationDirection = STRAIGHT;
-        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
+        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM20", 57600);
     }
 }
