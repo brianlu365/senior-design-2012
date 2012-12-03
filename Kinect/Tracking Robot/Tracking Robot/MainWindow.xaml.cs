@@ -221,9 +221,6 @@ namespace Microsoft.Kinect.TrackingRobot
                             //calculate the distance left hand traveled
                             double leftHandDistanceTraveled = Math.Sqrt(Math.Pow(currentLeftHandPosition.X - previousLeftHandPosition.X, 2) + Math.Pow(currentLeftHandPosition.Y - previousLeftHandPosition.Y, 2));
                             
-                            //for print out
-                            //temp = " " + leftHandDistanceTraveled + " ";
-                            //textBox2.Text = temp;
 
                             //decide whether to start draw line
                             //if the left hand distance traveled is greater than 100
@@ -900,7 +897,7 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        public const double dw = 7;
+        public const double dw = 10;
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int STRAIGHT = 3;
