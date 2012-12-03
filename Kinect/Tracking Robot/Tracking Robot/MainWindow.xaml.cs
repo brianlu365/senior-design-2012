@@ -24,9 +24,9 @@ namespace Microsoft.Kinect.TrackingRobot
         private const double ClipBoundsThickness = 10;
         private readonly Brush centerPointBrush = Brushes.Blue;
         private readonly Brush trackedJointBrush = new SolidColorBrush(Color.FromArgb(255, 68, 192, 68));
-        private readonly Brush inferredJointBrush = Brushes.Green;
-        private readonly Pen trackedBonePen = new Pen(Brushes.Green, 6);
-        private readonly Pen inferredBonePen = new Pen(Brushes.Gray, 1);
+        private Brush inferredJointBrush = Brushes.Green;
+        private Pen trackedBonePen = new Pen(Brushes.Green, 6);
+        private readonly Pen linePen = new Pen(Brushes.Gray, 1);
         private readonly Pen robotPen = new Pen(Brushes.Blue, 1);
         private KinectSensor sensor;
         private DrawingGroup drawingGroup;
@@ -115,10 +115,10 @@ namespace Microsoft.Kinect.TrackingRobot
             }             
             else
             {
-                robot.wixel.Open();
+                /*robot.wixel.Open();
                 robot.wixel.Write("f");
                 robot.wixel.Close();
-                robotTimer.Stop();
+                robotTimer.Stop();*/
             }
         }
         
@@ -302,13 +302,11 @@ namespace Microsoft.Kinect.TrackingRobot
                             
                             
                             //textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
-                            textBox2.Text = "" + robot.angle.angle + "";
-                            drawRobot(dc, robot);
-                            textBox4.Text = "( " + robot.center.X + " , " + robot.center.Y + " )";
+                           
                             if (handPath.iterator != null)
                             {
                                double dist = Math.Sqrt(Math.Pow(robot.center.X - handPath.iterator.myPoint.X, 2) + Math.Pow(robot.center.Y - handPath.iterator.myPoint.Y, 2));
-                               textBox1.Text = "" + dist + "";
+                             
                             }
                         }                    
                         //else if (skel.TrackingState == SkeletonTrackingState.PositionOnly){}
@@ -349,8 +347,6 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (distance >= handPath.distance)
                 {
                     handPath.addNode(currentPoint);
-                    if (handPath.tail.pre != null)
-                        textBox3.Text = "" + handPath.tail.pre.turnAngle.angle;
                 }
             }
             if (handPath.length > 100)
@@ -366,7 +362,7 @@ namespace Microsoft.Kinect.TrackingRobot
             {
                 for (Node x = handPath.head; x.next != null; x = x.next)
                 {
-                    drawingContext.DrawLine(this.inferredBonePen, x.myPoint, x.next.myPoint);
+                    drawingContext.DrawLine(this.linePen, x.myPoint, x.next.myPoint);
                 }
             }
         }
@@ -374,10 +370,19 @@ namespace Microsoft.Kinect.TrackingRobot
         private void drawCurrentHandPosition(DrawingContext drawingContext, Skeleton skel)
         {
             Point currentPoint = SkeletonPointToScreen(skel.Joints[JointType.HandRight].Position);
-            drawingContext.DrawEllipse(inferredJointBrush, inferredBonePen, currentPoint, 10, 10);
-            Debug.Print("currentPoint = (%d , %d)\n", currentPoint.X, currentPoint.Y);
-            String text = "(" + currentPoint.X + " , " + currentPoint.Y+ ")";
-            textBox1.Text = text;
+            if (updatePath)
+            {
+                inferredJointBrush = Brushes.Green;
+                trackedBonePen.Brush = Brushes.Green;
+            }
+            else
+            {
+                inferredJointBrush = Brushes.Red;
+                trackedBonePen.Brush = Brushes.Red;
+            }
+            drawingContext.DrawEllipse(inferredJointBrush, trackedBonePen, currentPoint, 10, 10);
+           
+          
         }
         // draw the robot
         private void drawRobot(DrawingContext drawingContext, Robot robot)
@@ -754,20 +759,20 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (d_angle <= neg_d_angle)
                 {
                     angle.moveAngle(dw);
-                    wixel.Open();
+                    /*wixel.Open();
                     //for (int i = 0; i < 6; i++)
                         wixel.Write("a");
                     //wixel.Write("f");
-                    wixel.Close();
+                    wixel.Close();*/
                 }
                 else
                 {
                     angle.moveAngle(-dw);
-                    wixel.Open();
+                    /*wixel.Open();
                     //for (int i = 0; i<6; i++)
                         wixel.Write("d");
                     //wixel.Write("f");
-                    wixel.Close();
+                    wixel.Close();*/
                 }
 
             }
@@ -778,20 +783,20 @@ namespace Microsoft.Kinect.TrackingRobot
                 if (d_angle <= neg_d_angle)
                 {
                     angle.moveAngle(-dw);
-                    wixel.Open();
+                    /*wixel.Open();
                     //for(int i=0; i < 6; i++)
                         wixel.Write("d");
                     //wixel.Write("f");
-                    wixel.Close();
+                    wixel.Close();*/
                 }
                 else
                 {
                     angle.moveAngle(dw);
-                    wixel.Open();
+                    /*wixel.Open();
                     //for(int i = 0; i<6; i++)
                         wixel.Write("a");
                     //wixel.Write("f");
-                    wixel.Close();
+                    wixel.Close();*/
                 }
             }
             else
@@ -877,11 +882,11 @@ namespace Microsoft.Kinect.TrackingRobot
             bottomRight.Y += dy;
             center.X += dx;
             center.Y += dy;
-            wixel.Open();
+            /*wixel.Open();
             //for (int i = 0; i <10; i++)
                 wixel.Write("w");
             //wixel.Write("f");
-            wixel.Close();
+            wixel.Close();*/
         }
         public double radious = 10;
         //the distance from center of rectangle to the corner
@@ -898,6 +903,6 @@ namespace Microsoft.Kinect.TrackingRobot
         public const int STRAIGHT = 3;
         public int rotationDirection = STRAIGHT;
         public int initialRotationDirection = STRAIGHT;
-        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM20", 57600);
+       // public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
     }
 }
