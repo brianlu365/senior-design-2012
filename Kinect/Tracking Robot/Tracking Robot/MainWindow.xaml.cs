@@ -395,6 +395,9 @@ namespace Microsoft.Kinect.TrackingRobot
             drawingContext.DrawLine(robotPen, robot.bottomLeft, robot.center);
             drawingContext.DrawLine(robotPen, robot.bottomRight, robot.center);
             textBox2.Text = "(" + Math.Round(robot.center.X) + " , " + Math.Round(robot.center.Y) + ")";
+            textBox3.Text = ""+ Math.Round(robot.angle.angle);
+            if (handPath.iterator != null)
+                textBox4.Text = "" + Math.Round(handPath.iterator.turnAngle.angle);
         }
 
         // detect whether hand is within the radius of robot
@@ -409,6 +412,7 @@ namespace Microsoft.Kinect.TrackingRobot
             else
                 return false;
         }
+
     }
     //hard coded linked list
     public class Node
@@ -897,7 +901,7 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        public const double dw = 10;
+        public const double dw = 7;
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int STRAIGHT = 3;
