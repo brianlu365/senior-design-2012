@@ -42,6 +42,7 @@ namespace Microsoft.Kinect.TrackingRobot
         private Point previousLeftHandPosition;
         private bool updatePath = false;
         private bool isFirstFrameDetected = false;
+        private bool isRobotMoving = false;
         // a linked list structure to hold the path of the hand
         private HandPath handPath = new HandPath();
         //Robot
@@ -115,6 +116,7 @@ namespace Microsoft.Kinect.TrackingRobot
             }             
             else
             {
+                isRobotMoving = false;
                 /*robot.wixel.Open();
                 robot.wixel.Write("f");
                 robot.wixel.Close();
@@ -225,7 +227,7 @@ namespace Microsoft.Kinect.TrackingRobot
 
                             //decide whether to start draw line
                             //if the left hand distance traveled is greater than 100
-                            if (!updatePath)
+                            if (!updatePath && !isRobotMoving)
                             {
                                 //if (leftHandDistanceTraveled >= 80)
                                 //{
@@ -273,6 +275,7 @@ namespace Microsoft.Kinect.TrackingRobot
                                         //move robot
                                         handPath.iterator = handPath.head;
                                         robot.determineInitialRotationDirection(handPath.iterator.turnAngle);
+                                        isRobotMoving = true;
                                         robotTimer.Enabled = true;
                                         robotTimer.Start();
                                     }
@@ -288,7 +291,7 @@ namespace Microsoft.Kinect.TrackingRobot
                             }
                         next:
                             //update the path
-                            if (updatePath)
+                            if (updatePath && !isRobotMoving)
                             {
                                 captureRightHandPath(skel);
                                 
