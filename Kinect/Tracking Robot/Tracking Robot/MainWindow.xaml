@@ -59,9 +59,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel Margin="0,0,0,6" Grid.ColumnSpan="3" Height="42">
-            <Label Content="Label" Height="30" Name="label1" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <Label Content="Current Hand Postion:" Height="30" Name="label1" Width="148" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox Height="30" Name="textBox1" Width="84" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-            <Label Content="Label" Height="30" Name="label2" Width="88" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <Label Content="Current Robot Position:" Height="30" Name="label2" Width="154" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox Height="30" Name="textBox2" Width="84" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </DockPanel>
         <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" Grid.ColumnSpan="3">

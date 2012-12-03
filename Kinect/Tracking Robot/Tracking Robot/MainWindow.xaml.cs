@@ -299,9 +299,8 @@ namespace Microsoft.Kinect.TrackingRobot
                             drawRightHandPath(dc);
                             //draw current right hand position
                             drawCurrentHandPosition(dc, skel);
-                            
-                            
-                            //textBox1.Text = "" + robot.topLeft + " , " + robot.topRight + " , " + robot.bottomLeft + " , " + robot.bottomRight;
+
+                            drawRobot(dc, robot);
                            
                             if (handPath.iterator != null)
                             {
@@ -381,7 +380,7 @@ namespace Microsoft.Kinect.TrackingRobot
                 trackedBonePen.Brush = Brushes.Red;
             }
             drawingContext.DrawEllipse(inferredJointBrush, trackedBonePen, currentPoint, 10, 10);
-           
+            textBox1.Text = "(" + Math.Round(currentPoint.X) + " , " + Math.Round(currentPoint.Y) + ")";
           
         }
         // draw the robot
@@ -395,6 +394,7 @@ namespace Microsoft.Kinect.TrackingRobot
             drawingContext.DrawLine(robotPen, robot.topRight, robot.center);
             drawingContext.DrawLine(robotPen, robot.bottomLeft, robot.center);
             drawingContext.DrawLine(robotPen, robot.bottomRight, robot.center);
+            textBox2.Text = "(" + Math.Round(robot.center.X) + " , " + Math.Round(robot.center.Y) + ")";
         }
 
         // detect whether hand is within the radius of robot
