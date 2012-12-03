@@ -835,8 +835,8 @@ namespace Microsoft.Kinect.TrackingRobot
             {
                 angle.moveAngle(-d_angle);
             }
-            if (angle.angle != _angle.angle)
-            {
+            //if (angle.angle != _angle.angle)
+            //{
                 double bottomLeftAngle = angle.angle - 180 - centerAngle;
                 double bottomRightAngle = angle.angle - 180 + centerAngle;
                 double topLeftAngle = angle.angle + centerAngle;
@@ -851,7 +851,7 @@ namespace Microsoft.Kinect.TrackingRobot
                 topRight.X = center.X + centerDistance * Math.Cos(topRightAngle * Math.PI / 180);
                 topRight.Y = center.Y - centerDistance * Math.Sin(topRightAngle * Math.PI / 180);
                 calculateDxDy();
-            }
+            //}
         }
         // currect distance after movements
         public void correctDistance(Point point)
@@ -901,7 +901,7 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        public const double dw = 7;
+        public const double dw = 20;
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int STRAIGHT = 3;

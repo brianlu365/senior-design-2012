@@ -63,9 +63,9 @@
             <TextBox Height="30" Name="textBox1" Width="84" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <Label Content="Current Robot Position:" Height="30" Name="label2" Width="154" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox Height="30" Name="textBox2" Width="84" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-            <Label Content="Robot Angle" Height="30" Name="label3" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Label Content="Robot Angle" Height="30" Name="label3" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox Height="30" HorizontalContentAlignment="Center" Name="textBox3" VerticalContentAlignment="Center" Width="43" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <Label Content="Node Angle" Height="30" Name="label4" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Label Content="Node Angle" Height="30" Name="label4" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox Height="30" HorizontalContentAlignment="Center" Name="textBox4" VerticalContentAlignment="Center" Width="43" HorizontalAlignment="Left" VerticalAlignment="Center" />
         </DockPanel>
         <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" Grid.ColumnSpan="3">
