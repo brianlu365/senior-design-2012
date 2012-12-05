@@ -19,7 +19,8 @@ namespace Microsoft.Kinect.TrackingRobot
   
     public partial class MainWindow : Window
     {
-       
+        private byte[] colorPixelData;
+        private WriteableBitmap outputImage;
         private const float RenderWidth = 640.0f;
         private const float RenderHeight = 480.0f;
         private const double JointThickness = 3;
@@ -158,7 +159,8 @@ namespace Microsoft.Kinect.TrackingRobot
 
                 // Add an event handler to be called whenever there is new color frame data
                 this.sensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
-
+                sensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
+                sensor.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(sensor_ColorFrameReady);
                 // Start the sensor!
                 try
                 {
@@ -180,6 +182,39 @@ namespace Microsoft.Kinect.TrackingRobot
                 this.sensor.Stop();
             }
             //robot.wixel.Close();
+        }
+        // display color stream
+        void sensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        {
+            using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
+            {
+                if (colorFrame != null)
+                {
+                    //Using standard SDK
+                    this.colorPixelData = new byte[colorFrame.PixelDataLength];
+
+                    colorFrame.CopyPixelDataTo(this.colorPixelData);
+
+                    this.outputImage = new WriteableBitmap(
+                    colorFrame.Width,
+                    colorFrame.Height,
+                    96,  // DpiX
+                    96,  // DpiY
+                    PixelFormats.Bgr32,
+                    null);
+
+                    this.outputImage.WritePixels(
+                    new Int32Rect(0, 0, colorFrame.Width, colorFrame.Height),
+                    this.colorPixelData,
+                    colorFrame.Width * 4,
+                    0);
+                    this.CImage.Source = this.outputImage;
+
+                    //Using Coding4Fun Kinect Toolkit
+                    //kinectColorImage.Source = imageFrame.ToBitmapSource();
+
+                }
+            }
         }
         // the display function
         private void SensorSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
@@ -443,6 +478,15 @@ namespace Microsoft.Kinect.TrackingRobot
             }
             else
                 return false;
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            if (!updatePath && !isRobotMoving)
+            {
+                robot.setRobot(word);
+                handPath.deleteAll();
+            }
         }
 
     }
