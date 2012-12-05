@@ -977,12 +977,12 @@ namespace Microsoft.Kinect.TrackingRobot
         public double dy;
         private const double dl = 5;
         //anglar speed
-        public const double dw = 20;
+        public const double dw = 18;
         public const int LEFT = 0;
         public const int RIGHT = 1;
         public const int STRAIGHT = 3;
         public int rotationDirection = STRAIGHT;
         public int initialRotationDirection = STRAIGHT;
-        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
+        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM20", 57600);
     }
 }

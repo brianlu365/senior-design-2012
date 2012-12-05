@@ -1,5 +1,44 @@
-Draw Lines with hand movement.
-Lines can not exceed a length of 200.
-Whenever a line exceed a length of 200, current line will be discarded and a new line will be construted.
-Lines are implemented by linked list, in which each node stores a point along the line.
-The distance between each node is strictly 1.
+This program uses Microsoft.Kinect library.
+The library will handle the sensor and construct a skeleton with consists all the major joints. Our job is to use those position of joints to create lines and robot motion.
+
+Data structure for Lines:
+LinkedList data structure with each nodes represent the points.
+The distance between each node is roughly fixed, though not exact.
+
+In main window class{
+
+captureRightHandPath(){
+ this method will add a node to the linked list every time when the right hand moves certain distance. the distance is currently set to 40. But due to human error, it's not always fixed.
+The angle of each node will be calculated in the addNode() method in LinkedList class
+}
+
+drawRightHandPath{
+ iterate through each node and draw a straight line between them.
+}
+drawRobot{
+ will drawRobot based on the current robot position
+}
+robotTimerEventHandler{
+ basically handles robot motion animation. it will detect whether the angle of robot match the angle of the node. if not, it rotates the robot, if it is, it move the robot straight forward. And it will iterate through each node of the line.
+there are some more technical details but not to be presented here.
+}
+}
+
+in the Robot class{
+ it basically handles the details of robot motion.
+calculateDXDY(){
+ this method calculates the x and y speed for the robot based on the angle.
+ the totoal speed is dl, currently set to 1.
+ so dx = dl * cos(angle) and dy = dl * sin(angle)
+ because this is in screen cordinate, dy is inverted so dy = -dl*sin(angle) as result
+}
+moveRobot(){
+ move the robot straight based on dx, dy.
+}
+rotateRobot(){
+ rotate the robot based on the anglur velocity dw.
+ after the rotation, each point of the robot has to be recalculated.
+ details of the calculation not to be presented here.
+}
+
+}

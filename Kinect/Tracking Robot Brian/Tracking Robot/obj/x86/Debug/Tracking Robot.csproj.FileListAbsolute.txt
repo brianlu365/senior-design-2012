@@ -1,0 +1,61 @@
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\MainWindow.baml
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\MainWindow.g.cs
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\App.g.cs
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\Tracking Robot_MarkupCompile.cache
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\Tracking Robot.g.resources
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\Tracking_Robot.Properties.Resources.resources
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\kenns\AppData\Local\Temporary Projects\Tracking Robot\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\bin\Debug\Tracking Robot.exe
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\bin\Debug\Tracking Robot.pdb
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\MainWindow.baml
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\MainWindow.g.cs
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\App.g.cs
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot_MarkupCompile.cache
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.g.resources
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking_Robot.Properties.Resources.resources
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.exe
+D:\My Documents\kenns\Documents\Visual Studio 2010\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.pdb
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.exe
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.pdb
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.exe
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.pdb
+G:\Work\Code\Tracking Robot\Tracking Robot\bin\Debug\Tracking Robot.exe
+G:\Work\Code\Tracking Robot\Tracking Robot\bin\Debug\Tracking Robot.pdb
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.csprojResolveAssemblyReference.cache
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\MainWindow.baml
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\MainWindow.g.cs
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\App.g.cs
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot_MarkupCompile.cache
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.g.resources
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking_Robot.Properties.Resources.resources
+G:\Work\Code\Tracking Robot\Tracking Robot\obj\x86\Debug\Tracking Robot.csproj.GenerateResource.Cache
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.exe
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.pdb
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.exe
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.pdb
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\bin\Debug\Tracking Robot.exe
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\bin\Debug\Tracking Robot.pdb
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\MainWindow.baml
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\MainWindow.g.cs
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\App.g.cs
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot_MarkupCompile.cache
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.g.resources
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking_Robot.Properties.Resources.resources
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\kenns\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\bin\Debug\Tracking Robot.exe
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\bin\Debug\Tracking Robot.pdb
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\MainWindow.baml
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\App.g.cs
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot_MarkupCompile.cache
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.g.resources
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking_Robot.Properties.Resources.resources
+C:\Users\Brian\Dropbox\Senior Design 2012\Kinect\Tracking Robot Brian\Tracking Robot\obj\x86\Debug\Tracking Robot.csproj.GenerateResource.Cache
