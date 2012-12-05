@@ -123,7 +123,7 @@ namespace Microsoft.Kinect.TrackingRobot
             {
                 isRobotMoving = false;
                 //robot.wixel.Open();
-                //robot.wixel.Write("f");
+                robot.wixel.Write("f");
                 //robot.wixel.Close();
                 robotTimer.Stop();
             }
@@ -171,7 +171,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     this.sensor = null;
                 }
             }
-            //robot.wixel.Open();
+            robot.wixel.Open();
         }
 
         //close window
@@ -181,7 +181,7 @@ namespace Microsoft.Kinect.TrackingRobot
             {
                 this.sensor.Stop();
             }
-            //robot.wixel.Close();
+            robot.wixel.Close();
         }
         // display color stream
         void sensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
@@ -841,7 +841,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     angle.moveAngle(dw);
                     //wixel.Open();
                     //for (int i = 0; i < 6; i++)
-                        //wixel.Write("a");
+                        wixel.Write("a");
                     //wixel.Write("f");
                     //wixel.Close();
                 }
@@ -850,7 +850,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     angle.moveAngle(-dw);
                     //wixel.Open();
                     //for (int i = 0; i<6; i++)
-                        //wixel.Write("d");
+                        wixel.Write("d");
                     //wixel.Write("f");
                     //wixel.Close();
                 }
@@ -865,7 +865,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     angle.moveAngle(-dw);
                     //wixel.Open();
                     //for(int i=0; i < 6; i++)
-                        //wixel.Write("d");
+                        wixel.Write("d");
                     //wixel.Write("f");
                     //wixel.Close();
                 }
@@ -874,7 +874,7 @@ namespace Microsoft.Kinect.TrackingRobot
                     angle.moveAngle(dw);
                     //wixel.Open();
                     //for(int i = 0; i<6; i++)
-                        //wixel.Write("a");
+                        wixel.Write("a");
                     //wixel.Write("f");
                     //wixel.Close();
                 }
@@ -964,7 +964,7 @@ namespace Microsoft.Kinect.TrackingRobot
             center.Y += dy;
             //wixel.Open();
             //for (int i = 0; i <10; i++)
-                //wixel.Write("w");
+                wixel.Write("w");
             //wixel.Write("f");
             //wixel.Close();
         }
@@ -983,6 +983,6 @@ namespace Microsoft.Kinect.TrackingRobot
         public const int STRAIGHT = 3;
         public int rotationDirection = STRAIGHT;
         public int initialRotationDirection = STRAIGHT;
-        //public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
+        public System.IO.Ports.SerialPort wixel = new System.IO.Ports.SerialPort("COM3", 57600);
     }
 }
